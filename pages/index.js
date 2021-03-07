@@ -30,7 +30,7 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query panQuery {
-        searchProducts(query: "stekpanna", limit: 2000) {
+        searchProducts(query: "stekpanna", limit: 200) {
           product {
             brand
             category

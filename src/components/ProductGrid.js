@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { gutter } from '../utils/constants';
 import { sizes } from '../utils/media';
 
+import Loader from './Loader';
 import ProductItem from './ProductItem';
 import CleanA from './CleanA';
 
@@ -18,7 +19,7 @@ const Grid = styled.div`
 `;
 
 const ProductList = ({ loading, error, products }) => {
-  if (loading) return <h1>Laddar</h1>;
+  if (loading) return <Loader />;
   if (error) return <h1>Någonting gick fel :-(</h1>;
 
   console.log(products);
@@ -33,7 +34,7 @@ const ProductList = ({ loading, error, products }) => {
           passHref
         >
           <CleanA>
-            <h1>{product.name}</h1>
+            <ProductItem product={product} />
           </CleanA>
         </Link>
       ))}
