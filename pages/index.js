@@ -2,6 +2,8 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 
+import ProductGrid from '../src/components/ProductGrid';
+
 export default function Home(props) {
   let products = props.products.map((p, i) => {
     return (
@@ -12,7 +14,11 @@ export default function Home(props) {
       </div>
     );
   });
-  return <div className={styles.container}>{products}</div>;
+  return (
+    <div className={styles.container}>
+      <ProductGrid products={props.products.map((p) => p.product || [])} />
+    </div>
+  );
 }
 
 const client = new ApolloClient({
@@ -37,6 +43,7 @@ export async function getStaticProps() {
             manufacturerArticleNumber
             name
             price
+            trackingUrl
           }
         }
       }
