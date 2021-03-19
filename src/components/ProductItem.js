@@ -8,9 +8,8 @@ import { fontBase } from '../utils/fonts';
 
 const Wrapper = styled.div`
   background: white;
-  border-radius: ${(props) => props.theme.borderRadiusBase}px;
-  box-shadow: ${(props) => props.theme.shadowBase};
-  padding: ${(props) => props.theme.gutter}px;
+  border-radius: 1rem;
+  padding: 10px;
 `;
 
 const ImageArea = styled.div`
@@ -51,25 +50,13 @@ const HName = styled.h1`
 `;
 
 const TopArea = styled.div`
-  height: 26px;
   display: flex;
   justify-content: space-between;
 `;
 
 const Price = styled.span`
   font-weight: 500;
-  color: ${colorBase};
-  border-radius: ${(props) => props.theme.borderRadiusBase / 2}px;
-  z-index: 1;
-  &:after {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 3px;
-    background: ${colorVeryLightGray};
-    bottom: 3px;
-    left: 0;
-    z-index: -1;
+  color: green;
   }
 `;
 
@@ -77,7 +64,7 @@ const Name = ({ children, fullSize }) =>
   fullSize ? <HName>{children}</HName> : <SpanName>{children}</SpanName>;
 
 const ProductItem = ({ product, fullSize = false }) => {
-  const { id, imageUrl, name, trackingUrl, price } = product;
+  const { imageUrl, name, price } = product;
 
   return (
     <Wrapper>

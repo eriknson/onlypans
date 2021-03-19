@@ -10,7 +10,7 @@ import CleanA from './CleanA';
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
   grid-gap: ${gutter * 2}px;
 
   @media (max-width: ${sizes.phone}px) {
@@ -34,7 +34,7 @@ const ProductList = ({ loading, error, products }) => {
           passHref
         >
           <CleanA>
-            <ProductItem product={product} />
+            <ProductItem fullSize={false} product={product} />
           </CleanA>
         </Link>
       ))}

@@ -16,6 +16,7 @@ export default function Home(props) {
   });
   return (
     <div className={styles.container}>
+      <h1>Featured pans</h1>
       <ProductGrid products={props.products.map((p) => p.product || [])} />
     </div>
   );
