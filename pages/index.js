@@ -1,8 +1,9 @@
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import firebase from "firebase/app";
-import "firebase/analytics";
-import "firebase/auth";
-import "firebase/firestore";
+import "@firebase/functions";
+import "@firebase/analytics";
+import "@firebase/auth";
+import "@firebase/firestore";
 
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
@@ -22,8 +23,11 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
+} else if (typeof window !== "undefined" && !firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
 } else {
-  firebase.app(); // if already initialized, use that one
+  firebase.app(); // if already initialized
 }
 
 export default function Home(props) {
