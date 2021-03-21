@@ -20,6 +20,9 @@ const firebaseConfig = {
   measurementId: "G-LFL5QMM87H",
 };
 
+if (typeof window === 'undefined') {
+  global.window = {}
+}
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
