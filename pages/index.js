@@ -6,32 +6,15 @@ import "@firebase/auth";
 import "@firebase/firestore";
 
 import styles from "../styles/Home.module.css";
+import styled from 'styled-components';
 import Link from "next/link";
 
 import ProductGrid from "../src/components/ProductGrid";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBBaXYMlmm_mKY7ls9fWroSXlBp5lCblBo",
-  authDomain: "only-pans.firebaseapp.com",
-  projectId: "only-pans",
-  storageBucket: "only-pans.appspot.com",
-  messagingSenderId: "167354933204",
-  appId: "1:167354933204:web:3c5c4eb3236056baa28041",
-  measurementId: "G-LFL5QMM87H",
-};
-
-if (typeof window === 'undefined') {
-  global.window = {}
-}
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-} else if (typeof window !== "undefined" && !firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-} else {
-  firebase.app(); // if already initialized
-}
+const HeroTitle = styled.h1`
+  font-weight: 700;
+  font-size: 48px;
+`;
 
 export default function Home(props) {
   let products = props.products.map((p, i) => {
@@ -45,7 +28,7 @@ export default function Home(props) {
   });
   return (
     <div className={styles.container}>
-      <h1>Featured pans</h1>
+      <HeroTitle>🍳🥘🔥</HeroTitle>
       <ProductGrid products={props.products.map((p) => p.product || [])} />
     </div>
   );
