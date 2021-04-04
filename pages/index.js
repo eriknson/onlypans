@@ -1,14 +1,7 @@
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import firebase from "firebase/app";
-import "@firebase/functions";
-import "@firebase/analytics";
-import "@firebase/auth";
-import "@firebase/firestore";
-
 import styles from "../styles/Home.module.css";
 import styled from 'styled-components';
 import Link from "next/link";
-
 import ProductGrid from "../src/components/ProductGrid";
 
 const HeroTitle = styled.h1`
