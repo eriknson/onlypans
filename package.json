@@ -11,7 +11,6 @@
     "@apollo/client": "^3.3.11",
     "@geist-ui/react": "^2.2.0",
     "@geist-ui/react-icons": "^1.0.1",
-    "firebase": "^8.3.1",
     "framer-motion": "4.1.17",
     "graphql": "^15.5.0",
     "next": "^10.0.7",
