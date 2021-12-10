@@ -10,10 +10,14 @@ import { sizes } from '../../src/utils/media'
 
 const Container = styled.div`
   background: #f5f2ed;
+  position: fixed;
+  width: 100%;
+  height: 100%;
   padding: ${gutter * 2}px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 
   @media (max-width: ${sizes.phone}px) {
     padding: ${gutter}px;
@@ -22,7 +26,6 @@ const Container = styled.div`
 
 const ProductWrapper = styled.div`
   max-width: 800px;
-  box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: ${gutter * 2}px;
@@ -48,7 +51,8 @@ const Info = styled.div``
 
 const Brand = styled(Text)`
   margin: 0;
-  line-height: 70%;
+  margin-top: -8px;
+  line-height: 100%;
   margin-bottom: 24px;
 `
 
@@ -71,14 +75,23 @@ const StockText = styled(Text)`
   font-size: 14px;
 `
 
-const CTA = styled.div``
+const TitleContainer = styled.a`
+  text-align: center;
+  margin-bottom: 24px;
+  color: black;
 
-const BackButton = styled.div``
+  &:hover {
+    color: #0070f3;
+  }
+`
 
 export default function ProductPage(props) {
   const router = useRouter()
   return (
     <Container>
+      <TitleContainer href='/'>
+        <Text h1>🍳 onlypans.se</Text>
+      </TitleContainer>
       <ProductWrapper>
         <Info>
           <Brand h1>{props.product.brand}</Brand>
