@@ -3,7 +3,6 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
 import { Text } from '@geist-ui/react'
 
 import ProductGrid from '../src/components/product/ProductGrid'
-import { useAuthContext } from '../src/context/AuthContext'
 import { gutter } from '../src/utils/constants'
 import { sizes } from '../src/utils/media'
 
@@ -22,7 +21,6 @@ const TitleContainer = styled.div`
 `
 
 export default function Home(props) {
-  const auth = useAuthContext()
   return (
     <Container>
       <TitleContainer>

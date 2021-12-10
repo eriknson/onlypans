@@ -1,5 +1,4 @@
 import React from 'react'
-import { AuthProvider } from '../src/context/AuthContext'
 import { GeistProvider, CssBaseline } from '@geist-ui/react'
 
 function MyApp({ Component, pageProps }) {
@@ -12,10 +11,8 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <GeistProvider>
-      <AuthProvider>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </AuthProvider>
+      <CssBaseline />
+      <Component {...pageProps} />
     </GeistProvider>
   )
 }
