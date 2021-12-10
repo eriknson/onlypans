@@ -1,8 +1,8 @@
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/auth";
-import "firebase/firestore";
-import "firebase/storage";
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/auth'
+import 'firebase/firestore'
+import 'firebase/storage'
 
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,18 +13,15 @@ export const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
-};
-
-if (!firebase.apps.length) {
-  console.log(firebaseConfig);
-  firebase.initializeApp(firebaseConfig);
 }
 
-const app = firebase.app();
-const auth = firebase.auth();
-const db = firebase.firestore();
-const now = firebase.firestore.Timestamp.now();
-const storage = firebase.storage();
-export { auth, db, now, storage };
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig)
+}
 
-console.log(app.name ? "Firebase Mode Activated!" : "Firebase not working :(");
+const app = firebase.app()
+const auth = firebase.auth()
+const db = firebase.firestore()
+const now = firebase.firestore.Timestamp.now()
+const storage = firebase.storage()
+export { auth, db, now, storage }

@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-import Loader from './Loader';
-import { useEffect, useRef, useState } from 'react';
-import { zindexHighest } from '../utils/constants';
-import { supportsWebP } from '../utils/webpDetect';
-import { useAmp } from 'next/amp';
-import * as React from 'react';
+import styled from "styled-components";
+import Loader from "./../Loader";
+import { useEffect, useRef, useState } from "react";
+import { zindexHighest } from "../../utils/constants";
+import { supportsWebP } from "../../utils/webpDetect";
+import { useAmp } from "next/amp";
+import * as React from "react";
 
 const Img = styled.img`
   border: none;
@@ -49,7 +49,7 @@ export const ProductImage = (props) => {
       img.onload = (e) => imageOnLoad(imgRef.current, setIsLoading);
     };
 
-    if (typeof webpIsSupported === 'boolean') {
+    if (typeof webpIsSupported === "boolean") {
       loadIt(webpIsSupported);
     } else {
       supportsWebP().then((supported) => {
@@ -79,13 +79,13 @@ export const ProductImage = (props) => {
         />
       </noscript>
       {useAmp() ? (
-        React.createElement('amp-img', {
+        React.createElement("amp-img", {
           src: srcJpg,
-          layout: 'fill',
-          class: 'contain',
+          layout: "fill",
+          class: "contain",
         })
       ) : (
-        <picture style={{ height: '100%' }}>
+        <picture style={{ height: "100%" }}>
           <source data-srcset={srcWebp} type="image/webp" />
           <source data-srcset={srcJpg} type="image/jpeg" />
           <Img

@@ -1,12 +1,12 @@
-import React from 'react';
-import Link from 'next/link';
-import styled from 'styled-components';
-import { gutter } from '../utils/constants';
-import { sizes } from '../utils/media';
+import React from 'react'
+import Link from 'next/link'
+import styled from 'styled-components'
+import { gutter } from '../../utils/constants'
+import { sizes } from '../../utils/media'
 
-import Loader from './Loader';
-import ProductItem from './ProductItem';
-import CleanA from './CleanA';
+import Loader from '../Loader'
+import ProductItem from './ProductItem'
+import CleanA from '../CleanA'
 
 const Grid = styled.div`
   display: grid;
@@ -16,20 +16,18 @@ const Grid = styled.div`
   @media (max-width: ${sizes.phone}px) {
     grid-gap: ${gutter}px;
   }
-`;
+`
 
 const ProductList = ({ loading, error, products }) => {
-  if (loading) return <Loader />;
-  if (error) return <h1>Någonting gick fel :-(</h1>;
-
-  console.log(products);
+  if (loading) return <Loader />
+  if (error) return <h1>Error</h1>
 
   return (
     <Grid>
       {products.map((product, i) => (
         <Link
           key={`${product.id}-${i}`}
-          href="/pans/[name]"
+          href='/pans/[name]'
           as={`/pans/${product.groupSlug}`}
           passHref
         >
@@ -39,7 +37,7 @@ const ProductList = ({ loading, error, products }) => {
         </Link>
       ))}
     </Grid>
-  );
-};
+  )
+}
 
-export default ProductList;
+export default ProductList

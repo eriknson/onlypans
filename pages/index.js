@@ -1,64 +1,67 @@
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import styles from "../styles/Home.module.css";
-import styled from 'styled-components';
-import Link from "next/link";
-import ProductGrid from "../src/components/ProductGrid";
+import styled from 'styled-components'
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { Text } from '@geist-ui/react'
 
-const HeroTitle = styled.h1`
-  font-weight: 700;
-  font-size: 48px;
-`;
+import ProductGrid from '../src/components/product/ProductGrid'
+import { useAuthContext } from '../src/context/AuthContext'
+import { gutter } from '../src/utils/constants'
+import { sizes } from '../src/utils/media'
+
+const Container = styled.div`
+  background: #f5f2ed;
+  padding: ${gutter * 2}px;
+
+  @media (max-width: ${sizes.phone}px) {
+    padding: ${gutter}px;
+  }
+`
+
+const TitleContainer = styled.div`
+  text-align: center;
+  margin-bottom: 24px;
+`
 
 export default function Home(props) {
-  let products = props.products.map((p, i) => {
-    return (
-      <div key={p.product.id}>
-        <Link href="/pans/[name]" as={`/pans/${p.product.groupSlug}`}>
-          {p.product.name}
-        </Link>
-      </div>
-    );
-  });
+  const auth = useAuthContext()
   return (
-    <div className={styles.container}>
-      <HeroTitle>🍳🥘🔥</HeroTitle>
+    <Container>
+      <TitleContainer>
+        <Text h1>🍳 onlypans.se</Text>
+      </TitleContainer>
       <ProductGrid products={props.products.map((p) => p.product || [])} />
-    </div>
-  );
+    </Container>
+  )
 }
 
 const client = new ApolloClient({
-  uri: "https://api.styleseek.se/v1/graphql",
+  uri: 'https://api.styleseek.se/v1/graphql',
   cache: new InMemoryCache(),
-});
+})
 
 export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query panQuery {
-        searchProducts(query: "stekpanna", limit: 20) {
+        searchProducts(query: "stekpanna", limit: 200) {
           product {
             brand
             category
-            currency
             description
-            ean
             id
             groupSlug
             imageUrl
-            manufacturerArticleNumber
             name
             price
             trackingUrl
+            inStock
           }
         }
       }
     `,
-  });
-  console.log(data);
+  })
   return {
     props: {
       products: data.searchProducts,
     },
-  };
+  }
 }
