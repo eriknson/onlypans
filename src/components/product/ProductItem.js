@@ -5,6 +5,7 @@ import * as React from 'react'
 import { fontBase } from '../../utils/fonts'
 import { gutter } from '../../utils/constants'
 import { sizes } from '../../utils/media'
+import { formatProductName } from '../../utils/formatter'
 
 const Wrapper = styled(motion.div)`
   background: white;
@@ -42,6 +43,12 @@ const textStyles = css`
   display: inline;
 `
 
+const ProductBrandText = styled(Text)`
+  ${textStyles}
+  display: block;
+  font-size: ${fontBase}px;
+`
+
 const ProductNameText = styled(Text)`
   ${textStyles}
   font-size: ${fontBase}px;
@@ -52,24 +59,26 @@ const ProductPriceText = styled(Text)`
 `
 
 const StockText = styled(Text)`
-  ${textStyles}
-  font-size: 14px;
+  margin: 0;
+  font-size: 12.5px;
 `
 
 const BottomArea = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `
 
 const ProductItem = ({ product, fullSize = false }) => {
-  const { imageUrl, name, price, inStock } = product
+  const { imageUrl, brand, name, price, inStock } = product
 
   return (
     <Wrapper whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
       <InfoArea>
-        <ProductNameText p b>
-          {name}
-        </ProductNameText>
+        <ProductBrandText p b>
+          {brand}
+        </ProductBrandText>
+        <ProductNameText p>{formatProductName(brand, name)}</ProductNameText>
         <StockText type='secondary' p>
           <Dot type={inStock ? 'success' : 'warning'} />
           {inStock ? 'In stock' : 'Out of stock'}
